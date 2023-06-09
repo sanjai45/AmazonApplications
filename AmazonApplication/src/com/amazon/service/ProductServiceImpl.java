@@ -19,14 +19,15 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * {@inheritDoc}
-     * @param amazon - add product to amazon
-     * @return boolean value
      */
     @Override
     public boolean createProduct(final Product amazon) {
         return PRODUCTS.add(amazon);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean updateProduct(final Product amazon) {
         for (final Product amazon1 : PRODUCTS) {
@@ -43,6 +44,9 @@ public class ProductServiceImpl implements ProductService {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean deleteProduct(int productId) {
         for (final Product amazon : PRODUCTS) {
@@ -55,6 +59,9 @@ public class ProductServiceImpl implements ProductService {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Product readProduct(int productId) {
         for (final Product amazon : PRODUCTS) {
@@ -67,6 +74,9 @@ public class ProductServiceImpl implements ProductService {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<Product> getAllProducts() {
         return PRODUCTS;

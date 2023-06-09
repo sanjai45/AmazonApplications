@@ -142,12 +142,26 @@ public class ProductView {
         }
     }
 
+    /**
+     * <p>
+     * Get the product Id
+     * </p>
+     *
+     * return product Id
+     */
     private int getProductId() {
         System.out.println("Enter the product id");
 
         return SCANNER.nextInt();
     }
 
+    /**
+     * <p>
+     * Get the category of products
+     * </p>
+     *
+     * return category Id
+     */
     private int getCategory() {
         System.out.println("Enter the product category 1. Electronics, 2.Vehicle");
         final int categoryId = SCANNER.nextInt();

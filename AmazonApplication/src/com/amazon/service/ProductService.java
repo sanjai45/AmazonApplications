@@ -24,11 +24,42 @@ public interface ProductService {
      */
     boolean createProduct(final Product amazon);
 
+    /**
+     * <p>
+     * Update the product
+     * </p>
+     *
+     * @param amazon - product detail
+     * @return boolean value
+     */
     boolean updateProduct(final Product amazon);
 
+    /**
+     * <p>
+     * Delete the product
+     * </p>
+     *
+     * @param productId - product detail
+     * @return boolean value
+     */
     boolean deleteProduct(final int productId);
 
+    /**
+     * <p>
+     * Read the product
+     * </p>
+     *
+     * @param productId - product detail
+     * @return boolean value
+     */
     Product readProduct(final int productId);
 
+    /**
+     * <p>
+     * Get all the product
+     * </p>
+     *
+     * @return product
+     */
     Set<Product> getAllProducts();
 }
