@@ -2,7 +2,7 @@ package com.amazon.model;
 
 /**
  * <p>
- * Create the pojo class
+ * Represents the user
  * </p>
  *
  * @author Sanjai S
@@ -14,6 +14,7 @@ public class User {
     private String email;
     private String mobileNumber;
     private String password;
+    private String id;
 
     public void setName(final String name) {
         this.name = name;
@@ -45,5 +46,13 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(final int id) {
+        this.id = id;
     }
 }

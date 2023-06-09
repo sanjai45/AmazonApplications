@@ -1,4 +1,5 @@
 package com.amazon.controller;
+
 import com.amazon.model.User;
 import com.amazon.service.UserService;
 import com.amazon.service.UserServiceImpl;
@@ -46,11 +47,11 @@ public class UserController {
      * Delete the user email details
      * </p>
      *
-     * @param email - user email
+     * @param id - user email
      * @return boolean value
      */
-    public boolean deleteEmail(final String email) {
-        return USER_SERVICE.deleteEmail(email);
+    public boolean deleteEmail(final int id) {
+        return USER_SERVICE.deleteEmail(id);
     }
 
     /**
@@ -61,7 +62,7 @@ public class UserController {
      * @param email - user email
      * @return user
      */
-    public User getUser(String email) {
+    public User getUser(final String email) {
         return USER_SERVICE.getUser(email);
     }
 
@@ -87,5 +88,17 @@ public class UserController {
      */
     public boolean signIn(String email, String password) {
         return USER_SERVICE.signIn(email, password);
+    }
+
+    /**
+     * <p>
+     * Get the user id
+     * </p>
+     *
+     * @param id - user id
+     * @return User
+     */
+    public User get(final int id) {
+        return USER_SERVICE.get(id);
     }
 }

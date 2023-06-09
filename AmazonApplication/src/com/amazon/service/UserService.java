@@ -42,7 +42,7 @@ public interface UserService {
      * @param email - user email
      * @return boolean value
      */
-    boolean deleteEmail(final String email);
+    boolean deleteEmail(final int id);
 
     /**
      * <p>
@@ -74,5 +74,13 @@ public interface UserService {
      */
     boolean signIn(final String email, final String password);
 
-
+    /**
+     * <p>
+     * Get the user id
+     * </p>
+     *
+     * @param id - user id
+     * @return User
+     */
+    User get(final int id);
 }

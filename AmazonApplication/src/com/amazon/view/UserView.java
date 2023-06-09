@@ -117,30 +117,30 @@ public class UserView {
      * return {@link String} userCrud
      */
     private String userCrud() {
-         System.out.println("Enter your choice");
-         System.out.println("Choose 1 to update, 2 to delete, 3 to read, 4 to get all users, 5 to exit");
-         final int input = SCANNER.nextInt();
+        System.out.println("Enter your choice");
+        System.out.println("Choose 1 to update, 2 to delete, 3 to read, 4 to get all users, 5 to exit");
+        final int input = SCANNER.nextInt();
 
-         switch (input) {
-             case 1: {
-                 USER_VIEW.updateUser();
-                 break;
-             }
-             case 2: {
-                 USER_VIEW.deleteEmail();
-                 break;
-             }
-             case 3: {
-                 USER_VIEW.readUser();
-                 break;
-             }
-             case 4: {
-                 USER_VIEW.readAllUsers();
-                 break;
-             }
-             case 5: {
-                 System.exit(0);
-             }
+        switch (input) {
+            case 1: {
+                USER_VIEW.updateUser();
+                break;
+            }
+            case 2: {
+                USER_VIEW.deleteEmail();
+                break;
+            }
+            case 3: {
+                USER_VIEW.readUser();
+                break;
+            }
+            case 4: {
+                USER_VIEW.readAllUsers();
+                break;
+            }
+            case 5: {
+                System.exit(0);
+            }
         }
         return userCrud();
     }
@@ -175,8 +175,8 @@ public class UserView {
      */
     private void readUser() {
         System.out.println("Please Enter the user email");
-        final String email = SCANNER.next();
-        final User user = USER_CONTROLLER.getUser(email);
+        final int id = SCANNER.nextInt();
+        final User user = USER_CONTROLLER.get(id);
 
         if (user.getEmail() == null) {
             System.out.println("user not found");
@@ -219,8 +219,9 @@ public class UserView {
     private void deleteEmail() {
         System.out.println("Delete");
         final String email = USER_VIEW.getEmail();
+        final int id = SCANNER.nextInt();
 
-        if (USER_CONTROLLER.deleteEmail(email)) {
+        if (USER_CONTROLLER.deleteEmail(id)) {
             System.out.println("User deleted successfully");
         } else {
             System.out.println("User not deleted");
@@ -236,7 +237,8 @@ public class UserView {
         System.out.println("update");
         final User user = new User();
 
-        System.out.println("Enter the email id");
+        System.out.println("Enter the user id");
+        user.setId(SCANNER.nextInt());
         final String email = USER_VIEW.getEmail();
 
         user.setEmail(email);

@@ -47,7 +47,7 @@ public class UserValidation {
 
     /**
      * <p>
-     * Get the password validation
+     * Check the password validation
      * </p>
      *
      * @return boolean value

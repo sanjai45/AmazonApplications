@@ -2,7 +2,7 @@ package com.amazon.model;
 
 /**
  * <p>
- * Create the pojo class
+ * Represents the product
  * </p>
  *
  * @author Sanjai S
@@ -22,7 +22,7 @@ public class Product {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(final int id) {
         this.id = id;
     }
 
@@ -30,7 +30,7 @@ public class Product {
         return this.name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -38,7 +38,7 @@ public class Product {
         return this.price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(final Double price) {
         this.price = price;
     }
 
@@ -46,7 +46,7 @@ public class Product {
         return this.category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(final int category) {
         this.category = category;
     }
 }

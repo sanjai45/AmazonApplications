@@ -16,6 +16,7 @@ import java.util.HashSet;
 public class UserServiceImpl implements UserService {
 
     private static final Set<User> USERS = new HashSet<>();
+    private static int userId = 0;
 
     /**
      * {@inheritDoc}
@@ -28,6 +29,7 @@ public class UserServiceImpl implements UserService {
                 return false;
             }
         }
+        user.setId(++userId);
         USERS.add(user);
         return true;
     }
@@ -46,10 +48,29 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
+    public User get(int id) {
+        final User user = new User();
+
+        for (final User existingUser : USERS) {
+
+            if (existingUser.getId() == id) {
+                user.setEmail(existingUser.getEmail());
+                user.setName(existingUser.getName());
+                user.setMobileNumber(existingUser.getMobileNumber());
+                user.setPassword(existingUser.getPassword());
+            }
+        }
+        return user;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean updateUser(final User user) {
         for (final User existingUser : USERS) {
 
-            if (existingUser.getEmail().equals(user.getEmail())) {
+            if (existingUser.getId() == user.getId()) {
                 existingUser.setMobileNumber(user.getMobileNumber());
                 existingUser.setName(user.getName());
                 existingUser.setPassword(user.getPassword());
@@ -64,10 +85,10 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public boolean deleteEmail(final String email) {
+    public boolean deleteEmail(final int id) {
         for (final User user : USERS) {
 
-            if (user.getEmail().equals(email)) {
+            if (user.getId() == id) {
                 USERS.remove(user);
 
                 return true;
