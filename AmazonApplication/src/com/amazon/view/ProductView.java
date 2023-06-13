@@ -5,6 +5,7 @@ import com.amazon.model.Product;
 import com.amazon.view.validation.ProductValidation;
 
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * <p>
@@ -16,7 +17,7 @@ import java.util.Scanner;
  */
 public class ProductView {
 
-    private static final ProductController AMAZON_CONTROLLER = new ProductController();
+    private static final ProductController PRODUCT_CONTROLLER = new ProductController();
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final ProductView PRODUCT_VIEW = new ProductView();
     private static final ProductValidation PRODUCT_VALIDATION = new ProductValidation();
@@ -25,8 +26,10 @@ public class ProductView {
      * <p>
      * To perform the update, delete, read and get operation
      * </p>
+     *
+     * @return {@link String} product details
      */
-    public void productDetails() {
+    public String productDetails() {
         System.out.println("Choose 1 to create the product, 2 to update, 3 to delete, 4 to read, 5 to get all products, 6 to exit");
         final int input = SCANNER.nextInt();
 
@@ -55,6 +58,7 @@ public class ProductView {
                 System.exit(0);
             }
         }
+        return productDetails();
     }
 
     /**
@@ -64,6 +68,9 @@ public class ProductView {
      */
     private void getAllProducts() {
         System.out.println("Get the all products");
+        final Set<Product> amazons = PRODUCT_CONTROLLER.getAllProducts();
+
+        System.out.println(amazons);
     }
 
     /**
@@ -74,7 +81,7 @@ public class ProductView {
     private void readProduct() {
         System.out.println("Read the one product");
 
-        final Product amazon = AMAZON_CONTROLLER.readProduct(getProductId());
+        final Product amazon = PRODUCT_CONTROLLER.readProduct(getProductId());
 
         System.out.println(amazon.getId());
         System.out.println(amazon.getName());
@@ -89,7 +96,7 @@ public class ProductView {
     private void deleteProduct() {
         System.out.println("Delete the product");
 
-        if (AMAZON_CONTROLLER.deleteProduct(getProductId())) {
+        if (PRODUCT_CONTROLLER.deleteProduct(getProductId())) {
             System.out.println("Product deleted successfully");
         } else {
             System.out.println("Product deleted failed");
@@ -111,7 +118,7 @@ public class ProductView {
         System.out.println("Enter the price");
         amazon.setPrice(SCANNER.nextDouble());
 
-        if (AMAZON_CONTROLLER.updateProduct(amazon)) {
+        if (PRODUCT_CONTROLLER.updateProduct(amazon)) {
             System.out.println("Product updated");
         } else {
             System.out.println("Product updated failed");
@@ -135,7 +142,7 @@ public class ProductView {
         product.setPrice(SCANNER.nextDouble());
         product.setCategory(getCategory());
 
-        if (AMAZON_CONTROLLER.createProduct(product)) {
+        if (PRODUCT_CONTROLLER.createProduct(product)) {
             System.out.println("Product created successfully");
         } else {
             System.out.println("product created failed");
@@ -163,7 +170,7 @@ public class ProductView {
      * return category Id
      */
     private int getCategory() {
-        System.out.println("Enter the product category 1. Electronics, 2.Vehicle");
+        System.out.println("Enter the product category 1. Electric, 2.Vehicle");
         final int categoryId = SCANNER.nextInt();
 
         if (!PRODUCT_VALIDATION.checkCategory(categoryId)) {

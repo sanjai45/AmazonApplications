@@ -61,21 +61,21 @@ public class UserView {
 
     /**
      * <p>
-     * User only two function sign up and sign in
-     * </p>
-     */
-    private void user() {
-        USER_VIEW.userDetails();
-    }
-
-    /**
-     * <p>
      * Admin user sign up and sign in and create product
      * </p>
      */
     private void adminUser() {
         USER_VIEW.userDetails();
         PRODUCT_VIEW.productDetails();
+    }
+
+    /**
+     * <p>
+     * User sign up or sign in
+     * </p>
+     */
+    private void user() {
+        USER_VIEW.userDetails();
     }
 
     /**
@@ -174,7 +174,7 @@ public class UserView {
      * </p>
      */
     private void readUser() {
-        System.out.println("Please Enter the user email");
+        System.out.println("Please Enter the user id");
         final int id = SCANNER.nextInt();
         final User user = USER_CONTROLLER.get(id);
 
@@ -218,7 +218,6 @@ public class UserView {
      */
     private void deleteEmail() {
         System.out.println("Delete");
-        final String email = USER_VIEW.getEmail();
         final int id = SCANNER.nextInt();
 
         if (USER_CONTROLLER.deleteEmail(id)) {

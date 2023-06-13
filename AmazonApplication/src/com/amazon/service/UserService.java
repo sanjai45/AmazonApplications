@@ -39,7 +39,7 @@ public interface UserService {
      * Delete the user email details
      * </p>
      *
-     * @param email - user email
+     * @param id - user id
      * @return boolean value
      */
     boolean deleteEmail(final int id);

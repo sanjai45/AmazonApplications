@@ -9,7 +9,7 @@ package com.amazon.exception;
  * @version 1.0
  */
 public class EmailAlreadyExistsException extends CustomException {
-    public EmailAlreadyExistsException(String message) {
+    public EmailAlreadyExistsException(final String message) {
         super(message);
     }
 }

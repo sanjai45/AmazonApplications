@@ -7,7 +7,7 @@ import com.amazon.service.ProductServiceImpl;
 import java.util.Set;
 /**
  * <p>
- * Intermediate between the user service and user view
+ * Intermediate between the product service and product view
  * </p>
  *
  * @author Sanjai S
@@ -19,7 +19,7 @@ public class ProductController {
 
     /**
      * <p>
-     * Create the amazon user
+     * Create the amazon product
      * </p>
      *
      * @param amazon - amazon product
@@ -55,7 +55,7 @@ public class ProductController {
 
     /**
      * <p>
-     * Reaad the product details
+     * Read the product details
      * </p>
      *
      * @param productId - amazon productId
