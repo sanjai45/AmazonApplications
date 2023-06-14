@@ -2,7 +2,7 @@ package com.amazon.model;
 
 /**
  * <p>
- * Represents the product
+ * Represents the product details
  * </p>
  *
  * @author Sanjai S

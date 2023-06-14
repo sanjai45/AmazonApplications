@@ -9,8 +9,12 @@ package com.amazon.model;
  * @version 1.0
  */
 public enum Category {
-    ELECTRIC(1),
-    VEHICLE(2);
+    ELECTRONICS(1),
+    VEHICLE(2),
+    FASHION(3),
+    APPLIANCES(4),
+    SPORTS(5),
+    TOYS(6);
 
     public int id;
 

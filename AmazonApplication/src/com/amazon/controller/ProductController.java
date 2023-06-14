@@ -7,7 +7,7 @@ import com.amazon.service.ProductServiceImpl;
 import java.util.Set;
 /**
  * <p>
- * Intermediate between the product service and product view
+ * Represents the intermediate between product service and product view
  * </p>
  *
  * @author Sanjai S
@@ -22,7 +22,7 @@ public class ProductController {
      * Create the amazon product
      * </p>
      *
-     * @param amazon - amazon product
+     * @param amazon - create amazon product
      * @return boolean value
      */
     public boolean createProduct(final Product amazon) {
@@ -34,7 +34,7 @@ public class ProductController {
      * Update the product
      * </p>
      *
-     * @param amazon - amazon product
+     * @param amazon - update amazon product
      * @return boolean value
      */
     public boolean updateProduct(final Product amazon) {
@@ -46,7 +46,7 @@ public class ProductController {
      * Delete the product
      * </p>
      *
-     * @param productId - amazon productId
+     * @param productId - amazon product Id
      * @return boolean value
      */
     public boolean deleteProduct(final int productId) {
@@ -58,7 +58,7 @@ public class ProductController {
      * Read the product details
      * </p>
      *
-     * @param productId - amazon productId
+     * @param productId - amazon product Id
      * @return Product
      */
     public Product readProduct(final int productId) {

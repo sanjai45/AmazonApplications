@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * <p>
- * Intermediate between the user service and user view
+ * Represents the intermediate between user service and user view
  * </p>
  *
  * @author Sanjai S

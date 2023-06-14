@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  * <p>
- * Create the product
+ * Represents the product details
  * </p>
  *
  * @author Sanjai S
@@ -63,7 +63,7 @@ public class ProductView {
 
     /**
      * <p>
-     * Gets all the products
+     * Get all the products
      * </p>
      */
     private void getAllProducts() {
@@ -170,7 +170,7 @@ public class ProductView {
      * return category Id
      */
     private int getCategory() {
-        System.out.println("Enter the product category 1. Electric, 2.Vehicle");
+        System.out.println("Enter the product category 1.Electronics, 2.Vehicle, 3.Fashion, 4.APPLIANCES, 5.Sports, 6.Toys");
         final int categoryId = SCANNER.nextInt();
 
         if (!PRODUCT_VALIDATION.checkCategory(categoryId)) {

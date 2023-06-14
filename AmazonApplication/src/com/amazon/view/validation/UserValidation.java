@@ -9,8 +9,6 @@ package com.amazon.view.validation;
  * @version 1.0
  */
 public class UserValidation {
-    public UserValidation() {
-    }
 
     /**
      * <p>
