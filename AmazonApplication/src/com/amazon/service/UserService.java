@@ -42,7 +42,7 @@ public interface UserService {
      * @param id - user id
      * @return boolean value
      */
-    boolean deleteEmail(final int id);
+    boolean deleteUser(final String id);
 
     /**
      * <p>
@@ -82,5 +82,5 @@ public interface UserService {
      * @param id - user id
      * @return User
      */
-    User get(final int id);
+    User get(final String id);
 }

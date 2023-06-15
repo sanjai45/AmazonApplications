@@ -17,8 +17,8 @@ public class UserValidation {
      *
      * @return boolean value
      */
-    public boolean checkEmail(String emailId) {
-        return emailId.matches("[A-Za-z0-9]+@[a-z]+\\.[a-z]{2,4}");
+    public boolean checkEmail(final String email) {
+        return email.matches("[A-Za-z0-9]+@[a-z]+\\.[a-z]{2,4}");
     }
 
     /**
@@ -28,7 +28,7 @@ public class UserValidation {
      *
      * @return boolean value
      */
-    public boolean checkName(String name) {
+    public boolean checkName(final String name) {
         return name.matches("[a-zA-Z]+\\.?");
     }
 
@@ -39,7 +39,7 @@ public class UserValidation {
      *
      * @return boolean value
      */
-    public boolean checkMobileNumber(String phoneNumber) {
+    public boolean checkMobileNumber(final String phoneNumber) {
         return phoneNumber.matches("(0/91)?[7-9][0-9]{9}");
     }
 
@@ -50,7 +50,7 @@ public class UserValidation {
      *
      * @return boolean value
      */
-    public boolean checkPassword(String password) {
+    public boolean checkPassword(final String password) {
         return password.matches("^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$");
     }
 }

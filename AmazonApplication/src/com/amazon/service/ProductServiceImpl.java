@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * <p>
- * Add product and implement operation
+ * Add and implementation for product details
  * </p>
  *
  * @author Sanjai S
@@ -17,56 +17,54 @@ public class ProductServiceImpl implements ProductService {
 
     private static final Set<Product> PRODUCTS = new HashSet<>();
 
+    private static int id = 1;
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean createProduct(final Product amazon) {
-        return PRODUCTS.add(amazon);
+    public boolean createProduct(final Product product) {
+        product.setId(Integer.toString(id++));
+
+        return PRODUCTS.add(product);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean updateProduct(final Product amazon) {
-        for (final Product amazon1 : PRODUCTS) {
+    public boolean updateProduct(final Product product) {
+        final Product existingProduct = readProduct(product.getId());
 
-            if (amazon1.getId() == amazon.getId()) {
-                amazon1.setName(amazon.getName());
-                amazon1.setPrice(amazon.getPrice());
-                amazon1.setCategory(amazon.getCategory());
+        if (null == existingProduct) {
+            return false;
+        } else {
+            existingProduct.setName(product.getName());
+            existingProduct.setPrice(product.getPrice());
+            existingProduct.setCategory(product.getCategory());
 
-                return true;
-            }
+            return true;
         }
-
-        return false;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean deleteProduct(int productId) {
+    public boolean deleteProduct(final String productId) {
+        final Product product = readProduct(productId);
+
+        return product != null && PRODUCTS.remove(product);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Product readProduct(final String productId) {
         for (final Product amazon : PRODUCTS) {
 
-            if (amazon.getId() == productId) {
-                return PRODUCTS.remove(amazon);
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Product readProduct(int productId) {
-        for (final Product amazon : PRODUCTS) {
-
-            if (amazon.getId() == productId) {
+            if (amazon.getId().equals(productId)) {
                 return amazon;
             }
         }

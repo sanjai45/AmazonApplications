@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 /**
  * <p>
- * Create and implement the crud operation
+ * Add and implementation for user details
  * </p>
  *
  * @author Sanjai S
@@ -16,22 +16,23 @@ import java.util.HashSet;
 public class UserServiceImpl implements UserService {
 
     private static final Set<User> USERS = new HashSet<>();
-    private static int userId = 0;
+    private static int id = 1;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean createUser(final User user) {
-        for (final User existingUser : USERS) {
+        final User existingUser = getUser(user.getEmail());
 
-            if (existingUser.getEmail().equals(user.getEmail())) {
-                return false;
-            }
+        if (existingUser == null) {
+            return false;
+        } else {
+            user.setId(Integer.toString(id++));
+            USERS.add(user);
+
+            return true;
         }
-        user.setId(++userId);
-        USERS.add(user);
-        return true;
     }
 
     /**
@@ -48,19 +49,22 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public User get(int id) {
+    public User get(final String id) {
         final User user = new User();
 
         for (final User existingUser : USERS) {
 
-            if (existingUser.getId() == id) {
+            if (existingUser.getId().equals(id)) {
                 user.setEmail(existingUser.getEmail());
                 user.setName(existingUser.getName());
                 user.setMobileNumber(existingUser.getMobileNumber());
                 user.setPassword(existingUser.getPassword());
+
+                return user;
             }
         }
-        return user;
+
+        return null;
     }
 
     /**
@@ -68,33 +72,27 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean updateUser(final User user) {
-        for (final User existingUser : USERS) {
+        final User existingUser = get(user.getId());
 
-            if (existingUser.getId() == user.getId()) {
-                existingUser.setMobileNumber(user.getMobileNumber());
-                existingUser.setName(user.getName());
-                existingUser.setPassword(user.getPassword());
+        if (existingUser == null) {
+            return false;
+        } else {
+            existingUser.setMobileNumber(user.getMobileNumber());
+            existingUser.setName(user.getName());
+            existingUser.setPassword(user.getPassword());
 
-                return true;
-            }
+            return true;
         }
-        return false;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean deleteEmail(final int id) {
-        for (final User user : USERS) {
+    public boolean deleteUser(final String id) {
+        final User user = get(id);
 
-            if (user.getId() == id) {
-                USERS.remove(user);
-
-                return true;
-            }
-        }
-        return false;
+        return user != null && USERS.remove(user);
     }
 
     /**
@@ -110,9 +108,11 @@ public class UserServiceImpl implements UserService {
                 user.setName(existingUser.getName());
                 user.setMobileNumber(existingUser.getMobileNumber());
                 user.setPassword(existingUser.getPassword());
+
+                return user;
             }
         }
-        return user;
+        return null;
     }
 
     /**

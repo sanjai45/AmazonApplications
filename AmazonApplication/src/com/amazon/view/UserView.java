@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  * <p>
- * Represents the user view sign up and sign in handle
+ * Represents the user view sign up and sign in details
  * </p>
  *
  * @author Sanjai S
@@ -26,17 +26,15 @@ public class UserView {
 
     public static void main(String[] args) {
         System.out.println("Welcome to Amazon");
-        USER_VIEW.users();
+        USER_VIEW.userType();
     }
 
     /**
      * <p>
-     * Choose the Admin user or user
-     * </>
-     *
-     * @return {@link String} users
+     * Choose the admin user or user
+     * </p>
      */
-    private String users() {
+    private void userType() {
         System.out.println("Please Enter 1. Admin user and 2. User 3. exit");
         final int choice = SCANNER.nextInt();
 
@@ -56,17 +54,15 @@ public class UserView {
                 System.out.println("Please enter the number between [1 - 3]");
             }
         }
-        return users();
+        userType();
     }
 
     /**
      * <p>
-     * Choose signIn or signup or product details
+     * Choose signIn or signup or product details for admin user
      * </p>
-     *
-     * return {@link String} admin user
      */
-    private String adminUser() {
+    private void adminUser() {
         System.out.println("Please Enter 1. signUp, 2. signIn and 3. product details 4. exit");
         final int choice = SCANNER.nextInt();
 
@@ -89,17 +85,15 @@ public class UserView {
                 System.out.println("Please enter the number between [1 - 4]");
             }
         }
-        return adminUser();
+        adminUser();
     }
 
     /**
      * <p>
-     * Choose signIn or signup handle
+     * Choose signIn or signup handle for user
      * </p>
-     *
-     * return {@link String} user details
      */
-    private String userDetails() {
+    private void userDetails() {
         System.out.println("Please Enter 1. signUp and 2. signIn 3. exit");
         final int choice = SCANNER.nextInt();
 
@@ -110,7 +104,7 @@ public class UserView {
             }
             case 2: {
                 signIn();
-                userCrud();
+                userDetailChange();
                 break;
             }
             case 3: {
@@ -120,17 +114,15 @@ public class UserView {
                 System.out.println("Please enter the number between [1 - 3]");
             }
         }
-        return userDetails();
+        userDetails();
     }
 
     /**
      * <p>
      * To perform the update, delete and get operation
      * </p>
-     *
-     * return {@link String} userCrud
      */
-    private String userCrud() {
+    private void userDetailChange() {
         System.out.println("Enter your choice");
         System.out.println("Choose 1 to update, 2 to delete, 3 to read, 4 to get all users, 5 to exit");
         final int input = SCANNER.nextInt();
@@ -141,55 +133,54 @@ public class UserView {
                 break;
             }
             case 2: {
-                deleteEmail();
+                deleteUser();
                 break;
             }
             case 3: {
-                readUser();
+                getUser();
                 break;
             }
             case 4: {
-                readAllUsers();
+                getAllUsers();
                 break;
             }
             case 5: {
                 System.exit(0);
             }
         }
-        return userCrud();
+        userDetailChange();
     }
 
     /**
      * <p>
-     * Represents the signIn handle
+     * Represents the signIn action
      * </p>
      */
     private void signIn() {
-
         try {
             System.out.println("SignIn");
-            final String email = getEmail();
-            final String password = getPassword();
+            final String email = USER_VIEW.getEmail();
+            final String password = USER_VIEW.getPassword();
 
             if (USER_CONTROLLER.signIn(email, password)) {
                 System.out.println("SignIn successfully");
             } else {
                 System.out.println("user email or password not found");
-                signIn();
+                USER_VIEW.signIn();
             }
         } catch (NullPointerException exception) {
-            System.out.println(exception.getMessage());
+            System.out.println(exception);
         }
     }
 
     /**
      * <p>
-     * Read the name, email, password and phone
+     * Gets the name, email, password and phone
      * </p>
      */
-    private void readUser() {
+    private void getUser() {
         System.out.println("Please Enter the user id");
-        final int id = SCANNER.nextInt();
+        final String id = SCANNER.next();
         final User user = USER_CONTROLLER.get(id);
 
         if (null == user.getEmail()) {
@@ -205,10 +196,10 @@ public class UserView {
 
     /**
      * <p>
-     * Read all the user
+     * Get all the user
      * </p>
      */
-    private void readAllUsers(){
+    private void getAllUsers() {
         final Collection<User> users = USER_CONTROLLER.getAllUsers();
 
         if (!users.isEmpty()) {
@@ -230,11 +221,11 @@ public class UserView {
      * Delete the user email
      * </p>
      */
-    private void deleteEmail() {
+    private void deleteUser() {
         System.out.println("Delete");
-        final int id = SCANNER.nextInt();
+        final String id = SCANNER.next();
 
-        if (USER_CONTROLLER.deleteEmail(id)) {
+        if (USER_CONTROLLER.deleteUser(id)) {
             System.out.println("User deleted successfully");
         } else {
             System.out.println("User not deleted");
@@ -251,7 +242,7 @@ public class UserView {
         final User user = new User();
 
         System.out.println("Enter the user id");
-        user.setId(SCANNER.nextInt());
+        user.setId(SCANNER.next());
         final String email = getEmail();
 
         user.setEmail(email);
@@ -263,7 +254,7 @@ public class UserView {
         if ("yes".equalsIgnoreCase(updateName)) {
             user.setName(getName());
         } else {
-            user.setEmail(existingUser.getEmail());
+            user.setName(existingUser.getEmail());
         }
         System.out.println("Do you want to update the password, Please enter yes");
         final String updatePassword = SCANNER.next();
@@ -304,7 +295,9 @@ public class UserView {
             user.setName(getName());
             user.setPassword(getPassword());
             user.setMobileNumber(getMobileNumber());
-            USER_CONTROLLER.createUser(user);
+            if (!USER_CONTROLLER.createUser(user)) {
+                System.out.println("Signup successfully");
+            }
         } catch (EmailAlreadyExistsException existsException) {
             System.out.println(existsException.getMessage());
         }

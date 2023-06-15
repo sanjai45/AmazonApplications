@@ -50,8 +50,8 @@ public class UserController {
      * @param id - user email
      * @return boolean value
      */
-    public boolean deleteEmail(final int id) {
-        return USER_SERVICE.deleteEmail(id);
+    public boolean deleteUser(final String id) {
+        return USER_SERVICE.deleteUser(id);
     }
 
     /**
@@ -86,7 +86,7 @@ public class UserController {
      * @param password - user password
      * @return boolean value
      */
-    public boolean signIn(String email, String password) {
+    public boolean signIn(final String email, final String password) {
         return USER_SERVICE.signIn(email, password);
     }
 
@@ -98,7 +98,7 @@ public class UserController {
      * @param id - user id
      * @return User
      */
-    public User get(final int id) {
+    public User get(final String id) {
         return USER_SERVICE.get(id);
     }
 }

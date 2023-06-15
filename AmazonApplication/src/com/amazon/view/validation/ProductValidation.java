@@ -19,7 +19,7 @@ public class ProductValidation {
      *
      * @return boolean value
      */
-    public boolean checkCategory(final int id) {
+    public boolean checkCategory(final String  id) {
         return id == Category.ELECTRONICS.id || id == Category.VEHICLE.id || id == Category.FASHION.id || id == Category.APPLIANCES.id || id == Category.SPORTS.id || id == Category.TOYS.id;
     }
 }

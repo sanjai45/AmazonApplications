@@ -49,7 +49,7 @@ public class ProductController {
      * @param productId - amazon product Id
      * @return boolean value
      */
-    public boolean deleteProduct(final int productId) {
+    public boolean deleteProduct(final String productId) {
         return PRODUCT_SERVICE.deleteProduct(productId);
     }
 
@@ -61,7 +61,7 @@ public class ProductController {
      * @param productId - amazon product Id
      * @return Product
      */
-    public Product readProduct(final int productId) {
+    public Product readProduct(final String productId) {
         return PRODUCT_SERVICE.readProduct(productId);
     }
 

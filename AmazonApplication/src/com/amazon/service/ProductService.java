@@ -42,7 +42,7 @@ public interface ProductService {
      * @param productId - product detail
      * @return boolean value
      */
-    boolean deleteProduct(final int productId);
+    boolean deleteProduct(final String productId);
 
     /**
      * <p>
@@ -52,7 +52,7 @@ public interface ProductService {
      * @param productId - product detail
      * @return boolean value
      */
-    Product readProduct(final int productId);
+    Product readProduct(final String productId);
 
     /**
      * <p>
