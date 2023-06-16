@@ -2,8 +2,6 @@ package com.amazon.service;
 
 import com.amazon.model.User;
 
-import java.util.Set;
-
 /**
  * <p>
  * Create the crud interface for user
@@ -42,7 +40,7 @@ public interface UserService {
      * @param id - represents the user id
      * @return boolean value
      */
-    boolean deleteUser(final String id);
+    boolean deleteUser(final Long id);
 
     /**
      * <p>
@@ -53,15 +51,6 @@ public interface UserService {
      * @return user
      */
     User getUser(final String email);
-
-    /**
-     * <p>
-     * Get all the user details
-     * </p>
-     *
-     * @return user
-     */
-    Set<User> getAllUsers();
 
     /**
      * <p>
@@ -82,5 +71,5 @@ public interface UserService {
      * @param id - represents the user id
      * @return User
      */
-    User get(final String id);
+    User get(final Long id);
 }

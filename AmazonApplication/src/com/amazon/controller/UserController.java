@@ -4,8 +4,6 @@ import com.amazon.model.User;
 import com.amazon.service.UserService;
 import com.amazon.service.UserServiceImpl;
 
-import java.util.Set;
-
 /**
  * <p>
  * Represents the intermediate between user service and user view
@@ -50,7 +48,7 @@ public class UserController {
      * @param id - user email
      * @return boolean value
      */
-    public boolean deleteUser(final String id) {
+    public boolean deleteUser(final Long id) {
         return USER_SERVICE.deleteUser(id);
     }
 
@@ -64,17 +62,6 @@ public class UserController {
      */
     public User getUser(final String email) {
         return USER_SERVICE.getUser(email);
-    }
-
-    /**
-     * <p>
-     * Get all the user details
-     * </p>
-     *
-     * @return user
-     */
-    public Set<User> getAllUsers() {
-        return USER_SERVICE.getAllUsers();
     }
 
     /**
@@ -98,7 +85,7 @@ public class UserController {
      * @param id - user id
      * @return User
      */
-    public User get(final String id) {
+    public User get(final Long id) {
         return USER_SERVICE.get(id);
     }
 }

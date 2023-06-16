@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
         if (existingUser != null) {
             return false;
         } else {
-            user.setId(Integer.toString(id++));
+            user.setId((long) id++);
             USERS.add(user);
 
             return true;
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public User get(final String id) {
+    public User get(final Long id) {
         final User user = new User();
 
         for (final User existingUser : USERS) {
@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public boolean deleteUser(final String id) {
+    public boolean deleteUser(final Long id) {
         final User user = get(id);
 
         return user != null && USERS.remove(user);
@@ -113,13 +113,5 @@ public class UserServiceImpl implements UserService {
             }
         }
         return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Set<User> getAllUsers() {
-        return USERS;
     }
 }

@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public boolean createProduct(final Product product) {
-        product.setId(Integer.toString(id++));
+        product.setId(String.valueOf(id++));
 
         return PRODUCTS.add(product);
     }

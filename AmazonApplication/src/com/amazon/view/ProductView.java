@@ -32,7 +32,7 @@ public class ProductView {
 
         switch (input) {
             case 1: {
-                createProduct();
+                addProduct();
                 break;
             }
             case 2: {
@@ -44,7 +44,7 @@ public class ProductView {
                 break;
             }
             case 4: {
-                readProduct();
+                getProduct();
                 break;
             }
             case 5: {
@@ -60,7 +60,7 @@ public class ProductView {
 
     /**
      * <p>
-     * Get all the products
+     * Gets all the products
      * </p>
      */
     private void getAllProducts() {
@@ -72,10 +72,10 @@ public class ProductView {
 
     /**
      * <p>
-     * Read the product
+     * Gets the product
      * </p>
      */
-    private void readProduct() {
+    private void getProduct() {
         System.out.println("Read the one product");
         final Product amazon = PRODUCT_CONTROLLER.readProduct(getProductId());
 
@@ -87,7 +87,7 @@ public class ProductView {
 
     /**
      * <p>
-     * Delete the product
+     * Deletes the product
      * </p>
      */
     private void deleteProduct() {
@@ -102,7 +102,7 @@ public class ProductView {
 
     /**
      * <p>
-     * Update the product
+     * Updates the product
      * </p>
      */
     private void updateProduct() {
@@ -128,7 +128,7 @@ public class ProductView {
      * Create the product
      * </p>
      */
-    private void createProduct() {
+    private void addProduct() {
         final Product product = new Product();
 
         System.out.println("Create a products");
@@ -149,7 +149,7 @@ public class ProductView {
 
     /**
      * <p>
-     * Get the product Id
+     * Gets the product Id
      * </p>
      * <p>
      * return product Id

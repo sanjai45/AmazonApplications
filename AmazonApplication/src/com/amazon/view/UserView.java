@@ -5,7 +5,6 @@ import com.amazon.model.User;
 import com.amazon.view.validation.UserValidation;
 import com.amazon.exception.EmailAlreadyExistsException;
 
-import java.util.Collection;
 import java.util.Scanner;
 
 /**
@@ -40,11 +39,11 @@ public class UserView {
 
         switch (choice) {
             case 1: {
-                adminUser();
+                this.adminUser();
                 break;
             }
             case 2: {
-                userDetails();
+                this.userDetails();
                 break;
             }
             case 3: {
@@ -63,26 +62,31 @@ public class UserView {
      * </p>
      */
     private void adminUser() {
-        System.out.println("Please Enter 1. signUp, 2. signIn and 3. product details 4. exit");
+        System.out.println("Please Enter 1. signUp, 2. signIn, 3. userDetailsChange, 4. product details and 4. exit");
         final int choice = SCANNER.nextInt();
 
         switch (choice) {
             case 1: {
-                signUp();
+                this.signUp();
                 break;
             }
             case 2: {
-                signIn();
+                this.signIn();
                 break;
             }
             case 3: {
-                PRODUCT_VIEW.productDetails();
+                this.userDetailChange();
+                break;
             }
             case 4: {
+                PRODUCT_VIEW.productDetails();
+                break;
+            }
+            case 5: {
                 System.exit(0);
             }
             default: {
-                System.out.println("Please enter the number between [1 - 4]");
+                System.out.println("Please enter the number between [1 - 5]");
             }
         }
         adminUser();
@@ -94,24 +98,27 @@ public class UserView {
      * </p>
      */
     private void userDetails() {
-        System.out.println("Please Enter 1. signUp and 2. signIn 3. exit");
+        System.out.println("Please Enter 1. signUp, 2. signIn and 3. userDetailChange 4. exit");
         final int choice = SCANNER.nextInt();
 
         switch (choice) {
             case 1: {
-                signUp();
+                this.signUp();
                 break;
             }
             case 2: {
-                signIn();
-                userDetailChange();
+                this.signIn();
                 break;
             }
             case 3: {
+                this.userDetailChange();
+                break;
+            }
+            case 4: {
                 System.exit(0);
             }
             default: {
-                System.out.println("Please enter the number between [1 - 3]");
+                System.out.println("Please enter the number between [1 - 4]");
             }
         }
         userDetails();
@@ -124,31 +131,30 @@ public class UserView {
      */
     private void userDetailChange() {
         System.out.println("Enter your choice");
-        System.out.println("Choose 1 to update, 2 to delete, 3 to get, 4 to get all users, 5 to exit");
+        System.out.println("Choose 1 to update user details, 2 to delete user details, 3 to get user details and 4 to exit");
         final int input = SCANNER.nextInt();
 
         switch (input) {
             case 1: {
-                updateUser();
+                this.updateUser();
                 break;
             }
             case 2: {
-                deleteUser();
+                this.deleteUser();
                 break;
             }
             case 3: {
-                getUser();
+                this.getUser();
                 break;
             }
             case 4: {
-                getAllUsers();
-                break;
-            }
-            case 5: {
                 System.exit(0);
             }
+            default: {
+                System.out.println("Please enter the number between [1 - 4]");
+            }
         }
-        userDetailChange();
+        USER_VIEW.userDetailChange();
     }
 
     /**
@@ -159,14 +165,14 @@ public class UserView {
     private void signIn() {
         try {
             System.out.println("SignIn");
-            final String email = getEmail();
-            final String password = getPassword();
+            final String email = USER_VIEW.getEmail();
+            final String password = USER_VIEW.getPassword();
 
             if (USER_CONTROLLER.signIn(email, password)) {
                 System.out.println("SignIn successfully");
             } else {
                 System.out.println("user email or password not found");
-                signIn();
+                USER_VIEW.signIn();
             }
         } catch (NullPointerException exception) {
             System.out.println(exception);
@@ -180,7 +186,7 @@ public class UserView {
      */
     private void getUser() {
         System.out.println("Please Enter the user id");
-        final String id = SCANNER.next();
+        final Long id = SCANNER.nextLong();
         final User user = USER_CONTROLLER.get(id);
 
         if (null == user.getEmail()) {
@@ -196,34 +202,12 @@ public class UserView {
 
     /**
      * <p>
-     * Get all the users
-     * </p>
-     */
-    private void getAllUsers() {
-        final Collection<User> users = USER_CONTROLLER.getAllUsers();
-
-        if (!users.isEmpty()) {
-            System.out.println("User details");
-
-            for (final User user : users) {
-                System.out.println(user.getName());
-                System.out.println(user.getEmail());
-                System.out.println(user.getPassword());
-                System.out.println(user.getMobileNumber());
-            }
-        } else {
-            System.out.println("users not found");
-        }
-    }
-
-    /**
-     * <p>
-     * Delete the user
+     * Deletes the user
      * </p>
      */
     private void deleteUser() {
         System.out.println("Delete");
-        final String id = SCANNER.next();
+        final Long id = SCANNER.nextLong();
 
         if (USER_CONTROLLER.deleteUser(id)) {
             System.out.println("User deleted successfully");
@@ -242,7 +226,7 @@ public class UserView {
         final User user = new User();
 
         System.out.println("Enter the user id");
-        user.setId(SCANNER.next());
+        user.setId(SCANNER.nextLong());
         final String email = getEmail();
 
         user.setEmail(email);
@@ -305,7 +289,7 @@ public class UserView {
 
     /**
      * <p>
-     * Get the user email
+     * Gets the user email
      * </p>
      *
      * @return {@link String} represents the email
@@ -324,7 +308,7 @@ public class UserView {
 
     /**
      * <p>
-     * Get the user name
+     * Gets the user name
      * </p>
      *
      * @return {@link String} represents the name
@@ -343,7 +327,7 @@ public class UserView {
 
     /**
      * <p>
-     * Get the user mobile number
+     * Gets the user mobile number
      * </p>
      *
      * @return {@link String} represents the mobile number
@@ -362,7 +346,7 @@ public class UserView {
 
     /**
      * <p>
-     * Get the user password
+     * Gets the user password
      * </p>
      *
      * @return {@link String} represents the password
