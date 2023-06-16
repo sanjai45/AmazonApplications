@@ -17,7 +17,7 @@ public enum Category {
     SPORTS("5"),
     TOYS("6");
 
-    public String id;
+    public final String id;
 
     Category(final String id) {
         this.id = id;

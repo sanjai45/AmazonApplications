@@ -82,6 +82,7 @@ public class ProductView {
         System.out.println(amazon.getId());
         System.out.println(amazon.getName());
         System.out.println(amazon.getPrice());
+        System.out.println(amazon.getCategory());
     }
 
     /**
@@ -171,8 +172,8 @@ public class ProductView {
         final String categoryId = SCANNER.next();
 
         if (!PRODUCT_VALIDATION.checkCategory(categoryId)) {
-            return getCategory();
+            return null;
         }
-        return categoryId;
+        return getCategory();
     }
 }

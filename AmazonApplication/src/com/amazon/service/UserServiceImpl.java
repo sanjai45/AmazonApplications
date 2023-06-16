@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     public boolean createUser(final User user) {
         final User existingUser = getUser(user.getEmail());
 
-        if (existingUser == null) {
+        if (existingUser != null) {
             return false;
         } else {
             user.setId(Integer.toString(id++));
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     public boolean signIn(final String email, final String password) {
         final User user = getUser(email);
 
-        return user != null && user.getPassword().equals(password);
+       return user != null && user.getPassword().equals(password);
     }
 
     /**

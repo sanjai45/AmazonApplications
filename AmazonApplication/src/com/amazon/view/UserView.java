@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  * <p>
- * Represents the user view sign up and sign in details
+ * Represents the user view sign up and sign in details 
  * </p>
  *
  * @author Sanjai S
@@ -31,7 +31,7 @@ public class UserView {
 
     /**
      * <p>
-     * Choose the admin user or user
+     * Represents the admin user or user
      * </p>
      */
     private void userType() {
@@ -90,7 +90,7 @@ public class UserView {
 
     /**
      * <p>
-     * Choose signIn or signup handle for user
+     * Represents signIn or signup handle for user
      * </p>
      */
     private void userDetails() {
@@ -124,7 +124,7 @@ public class UserView {
      */
     private void userDetailChange() {
         System.out.println("Enter your choice");
-        System.out.println("Choose 1 to update, 2 to delete, 3 to read, 4 to get all users, 5 to exit");
+        System.out.println("Choose 1 to update, 2 to delete, 3 to get, 4 to get all users, 5 to exit");
         final int input = SCANNER.nextInt();
 
         switch (input) {
@@ -159,14 +159,14 @@ public class UserView {
     private void signIn() {
         try {
             System.out.println("SignIn");
-            final String email = USER_VIEW.getEmail();
-            final String password = USER_VIEW.getPassword();
+            final String email = getEmail();
+            final String password = getPassword();
 
             if (USER_CONTROLLER.signIn(email, password)) {
                 System.out.println("SignIn successfully");
             } else {
                 System.out.println("user email or password not found");
-                USER_VIEW.signIn();
+                signIn();
             }
         } catch (NullPointerException exception) {
             System.out.println(exception);
@@ -196,7 +196,7 @@ public class UserView {
 
     /**
      * <p>
-     * Get all the user
+     * Get all the users
      * </p>
      */
     private void getAllUsers() {
@@ -218,7 +218,7 @@ public class UserView {
 
     /**
      * <p>
-     * Delete the user email
+     * Delete the user
      * </p>
      */
     private void deleteUser() {
@@ -274,7 +274,7 @@ public class UserView {
         }
 
         if (USER_CONTROLLER.updateUser(user)) {
-            System.out.println("Updated successfully" + user);
+            System.out.println("Updated successfully " + user);
         } else {
             System.out.println("Email not found, please enter correct email id");
             updateUser();
@@ -283,7 +283,7 @@ public class UserView {
 
     /**
      * <p>
-     * Signup the user
+     * Represents the signUp action
      * </p>
      */
     private void signUp() {
@@ -308,14 +308,14 @@ public class UserView {
      * Get the user email
      * </p>
      *
-     * @return {@link String} email
+     * @return {@link String} represents the email
      */
     private String getEmail() {
         System.out.println("Enter the User Email");
-        final String emailId = SCANNER.next();
+        final String email = SCANNER.next();
 
-        if (USER_VALIDATION.checkEmail(emailId)) {
-            return emailId;
+        if (USER_VALIDATION.checkEmail(email)) {
+            return email;
         } else {
             System.out.println("Please Enter the valid Email");
             return getEmail();
@@ -327,7 +327,7 @@ public class UserView {
      * Get the user name
      * </p>
      *
-     * @return {@link String} name
+     * @return {@link String} represents the name
      */
     private String getName() {
         System.out.println("Enter your name");
@@ -346,7 +346,7 @@ public class UserView {
      * Get the user mobile number
      * </p>
      *
-     * @return {@link String} mobile number
+     * @return {@link String} represents the mobile number
      */
     private String getMobileNumber() {
         System.out.println("Enter your phone number");
@@ -365,7 +365,7 @@ public class UserView {
      * Get the user password
      * </p>
      *
-     * @return {@link String} password
+     * @return {@link String} represents the password
      */
     private String getPassword() {
         System.out.println("Enter the password");

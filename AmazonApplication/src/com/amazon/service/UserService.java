@@ -19,7 +19,7 @@ public interface UserService {
      * Create the new user
      * </p>
      *
-     * @param user - new user email
+     * @param user - represents the new user
      * @return boolean value
      */
     boolean createUser(final User user);
@@ -29,7 +29,7 @@ public interface UserService {
      * Update the user details
      * </p>
      *
-     * @param user - user details
+     * @param user - represents the user
      * @return boolean value
      */
     boolean updateUser(final User user);
@@ -39,7 +39,7 @@ public interface UserService {
      * Delete the user email details
      * </p>
      *
-     * @param id - user id
+     * @param id - represents the user id
      * @return boolean value
      */
     boolean deleteUser(final String id);
@@ -49,7 +49,7 @@ public interface UserService {
      * Read the user details
      * </p>
      *
-     * @param email - user email
+     * @param email - represents the user email
      * @return user
      */
     User getUser(final String email);
@@ -68,8 +68,8 @@ public interface UserService {
      * Sign in the user details
      * </p>
      *
-     * @param email - user email
-     * @param password - user password
+     * @param email - represents the user email
+     * @param password - represents the user password
      * @return boolean value
      */
     boolean signIn(final String email, final String password);
@@ -79,7 +79,7 @@ public interface UserService {
      * Get the user id
      * </p>
      *
-     * @param id - user id
+     * @param id - represents the user id
      * @return User
      */
     User get(final String id);
