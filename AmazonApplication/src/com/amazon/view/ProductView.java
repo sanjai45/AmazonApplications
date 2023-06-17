@@ -4,8 +4,8 @@ import com.amazon.controller.ProductController;
 import com.amazon.model.Product;
 import com.amazon.view.validation.ProductValidation;
 
+import java.util.Collection;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  * <p>
@@ -65,7 +65,7 @@ public class ProductView {
      */
     private void getAllProducts() {
         System.out.println("Get the all products");
-        final Set<Product> amazons = PRODUCT_CONTROLLER.getAllProducts();
+        final Collection<Product> amazons = PRODUCT_CONTROLLER.getAllProducts();
 
         System.out.println(amazons);
     }
@@ -77,7 +77,7 @@ public class ProductView {
      */
     private void getProduct() {
         System.out.println("Read the one product");
-        final Product amazon = PRODUCT_CONTROLLER.readProduct(getProductId());
+        final Product amazon = PRODUCT_CONTROLLER.getProduct(getProductId());
 
         System.out.println(amazon.getId());
         System.out.println(amazon.getName());
@@ -125,7 +125,7 @@ public class ProductView {
 
     /**
      * <p>
-     * Create the product
+     * Creates the product
      * </p>
      */
     private void addProduct() {
@@ -133,7 +133,7 @@ public class ProductView {
 
         System.out.println("Create a products");
         System.out.println("Enter the product Id");
-        product.setId(SCANNER.next());
+        product.setId(SCANNER.nextLong());
         System.out.println("Enter the product name");
         product.setName(SCANNER.next());
         System.out.println("Enter the price");
@@ -154,10 +154,10 @@ public class ProductView {
      * <p>
      * return product Id
      */
-    private String getProductId() {
+    private Long getProductId() {
         System.out.println("Enter the product id");
 
-        return SCANNER.next();
+        return SCANNER.nextLong();
     }
 
     /**
@@ -167,9 +167,9 @@ public class ProductView {
      * <p>
      * return category Id
      */
-    private String getCategory() {
+    private Integer getCategory() {
         System.out.println("Enter the product category 1.Electronics, 2.Vehicle, 3.Fashion, 4.APPLIANCES, 5.Sports, 6.Toys");
-        final String categoryId = SCANNER.next();
+        final int categoryId = SCANNER.nextInt();
 
         if (!PRODUCT_VALIDATION.checkCategory(categoryId)) {
             return null;

@@ -17,9 +17,10 @@ public class ProductValidation {
      * Check the category id is valid or not
      * </p>
      *
-     * @return boolean value
+     * @param id represents the category id
+     * @return the category id is valid or not
      */
-    public boolean checkCategory(final String id) {
+    public boolean checkCategory(final int id) {
         return id == Category.ELECTRONICS.id || id == Category.VEHICLE.id || id == Category.FASHION.id || id == Category.APPLIANCES.id || id == Category.SPORTS.id || id == Category.TOYS.id;
     }
 }

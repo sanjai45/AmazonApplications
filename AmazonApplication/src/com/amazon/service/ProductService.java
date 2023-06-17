@@ -2,11 +2,11 @@ package com.amazon.service;
 
 import com.amazon.model.Product;
 
-import java.util.Set;
+import java.util.Collection;
 
 /**
  * <p>
- * Create the crud interface for service
+ * Represents the product service interface
  * </p>
  *
  * @author Sanjai S
@@ -19,47 +19,47 @@ public interface ProductService {
      * Create the product
      * </p>
      *
-     * @param amazon - amazon user
-     * @return boolean value
+     * @param product represents the product
+     * @return the product
      */
-    boolean createProduct(final Product amazon);
+    boolean createProduct(final Product product);
 
     /**
      * <p>
      * Update the product
      * </p>
      *
-     * @param amazon - product detail
-     * @return boolean value
+     * @param product represents the product detail
+     * @return the updated product
      */
-    boolean updateProduct(final Product amazon);
+    boolean updateProduct(final Product product);
 
     /**
      * <p>
      * Delete the product
      * </p>
      *
-     * @param productId - product detail
-     * @return boolean value
+     * @param productId represents the product id
+     * @return the product is deleted or not
      */
-    boolean deleteProduct(final String productId);
+    boolean deleteProduct(final Long productId);
 
     /**
      * <p>
-     * Read the product
+     * Gets the product
      * </p>
      *
-     * @param productId - product detail
-     * @return boolean value
+     * @param productId represents the product id
+     * @return the product id is valid or not
      */
-    Product readProduct(final String productId);
+    Product getProduct(final Long productId);
 
     /**
      * <p>
-     * Get all the product
+     * Gets all the product
      * </p>
      *
      * @return product
      */
-    Set<Product> getAllProducts();
+    Collection<Product> getAllProducts();
 }

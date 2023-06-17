@@ -4,7 +4,9 @@ import com.amazon.model.Product;
 import com.amazon.service.ProductService;
 import com.amazon.service.ProductServiceImpl;
 
-import java.util.Set;
+import java.util.Collection;
+
+
 /**
  * <p>
  * Represents the intermediate between product service and product view
@@ -19,60 +21,60 @@ public class ProductController {
 
     /**
      * <p>
-     * Create the amazon product
+     * Creates the amazon product
      * </p>
      *
-     * @param amazon - create amazon product
-     * @return boolean value
+     * @param product represents create amazon product
+     * @return the product
      */
-    public boolean createProduct(final Product amazon) {
-        return PRODUCT_SERVICE.createProduct(amazon);
+    public boolean createProduct(final Product product) {
+        return PRODUCT_SERVICE.createProduct(product);
     }
 
     /**
      * <p>
-     * Update the product
+     * Updates the product
      * </p>
      *
-     * @param amazon - update amazon product
-     * @return boolean value
+     * @param product represents the update amazon product
+     * @return updated product
      */
-    public boolean updateProduct(final Product amazon) {
-        return PRODUCT_SERVICE.updateProduct(amazon);
+    public boolean updateProduct(final Product product) {
+        return PRODUCT_SERVICE.updateProduct(product);
     }
 
     /**
      * <p>
-     * Delete the product
+     * Deletes the product
      * </p>
      *
-     * @param productId - amazon product Id
-     * @return boolean value
+     * @param productId represents the amazon product ID
+     * @return product id is deleted
      */
-    public boolean deleteProduct(final String productId) {
+    public boolean deleteProduct(final Long productId) {
         return PRODUCT_SERVICE.deleteProduct(productId);
     }
 
     /**
      * <p>
-     * Read the product details
+     * Gets the product details
      * </p>
      *
-     * @param productId - amazon product Id
+     * @param productId represents the amazon product ID
      * @return Product
      */
-    public Product readProduct(final String productId) {
-        return PRODUCT_SERVICE.readProduct(productId);
+    public Product getProduct(final Long productId) {
+        return PRODUCT_SERVICE.getProduct(productId);
     }
 
     /**
      * <p>
-     * Get all the product details
+     * Gets all the product details
      * </p>
      *
      * @return Product
      */
-    public Set<Product> getAllProducts() {
+    public Collection<Product> getAllProducts() {
         return PRODUCT_SERVICE.getAllProducts();
     }
 }

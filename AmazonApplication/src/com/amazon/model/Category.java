@@ -10,16 +10,16 @@ package com.amazon.model;
  */
 public enum Category {
 
-    ELECTRONICS("1"),
-    VEHICLE("2"),
-    FASHION("3"),
-    APPLIANCES("4"),
-    SPORTS("5"),
-    TOYS("6");
+    ELECTRONICS(1),
+    VEHICLE(2),
+    FASHION(3),
+    APPLIANCES(4),
+    SPORTS(5),
+    TOYS(6);
 
-    public final String id;
+    public final int id;
 
-    Category(final String id) {
+    Category(final int id) {
         this.id = id;
     }
 }

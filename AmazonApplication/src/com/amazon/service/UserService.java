@@ -4,7 +4,7 @@ import com.amazon.model.User;
 
 /**
  * <p>
- * Create the crud interface for user
+ * Represents the user service interface
  * </p>
  *
  * @author Sanjai S
@@ -17,8 +17,8 @@ public interface UserService {
      * Create the new user
      * </p>
      *
-     * @param user - represents the new user
-     * @return boolean value
+     * @param user represents the new user
+     * @return user
      */
     boolean createUser(final User user);
 
@@ -27,48 +27,48 @@ public interface UserService {
      * Update the user details
      * </p>
      *
-     * @param user - represents the user
-     * @return boolean value
+     * @param user represents the user details
+     * @return updated user
      */
     boolean updateUser(final User user);
 
     /**
      * <p>
-     * Delete the user email details
+     * Deletes the user email details
      * </p>
      *
-     * @param id - represents the user id
-     * @return boolean value
+     * @param id represents the user id
+     * @return the deleted user
      */
     boolean deleteUser(final Long id);
 
     /**
      * <p>
-     * Read the user details
+     * Gets the user details
      * </p>
      *
-     * @param email - represents the user email
+     * @param email represents the user email
      * @return user
      */
     User getUser(final String email);
 
     /**
      * <p>
-     * Sign in the user details
+     * Represents the sign in action
      * </p>
      *
-     * @param email - represents the user email
-     * @param password - represents the user password
-     * @return boolean value
+     * @param email represents the user email
+     * @param password represents the user password
+     * @return the email and password
      */
     boolean signIn(final String email, final String password);
 
     /**
      * <p>
-     * Get the user id
+     * Gets the user id
      * </p>
      *
-     * @param id - represents the user id
+     * @param id represents the user id
      * @return User
      */
     User get(final Long id);

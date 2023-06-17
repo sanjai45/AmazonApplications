@@ -21,8 +21,8 @@ public class UserController {
      * Create the new user
      * </p>
      *
-     * @param user - new user email
-     * @return boolean value
+     * @param user represents the new user
+     * @return user
      */
     public boolean createUser(final User user) {
         return USER_SERVICE.createUser(user);
@@ -33,8 +33,8 @@ public class UserController {
      * Update the user details
      * </p>
      *
-     * @param user - user details
-     * @return boolean value
+     * @param user represents the user details
+     * @return the updated user
      */
     public boolean updateUser(final User user) {
         return USER_SERVICE.updateUser(user);
@@ -45,8 +45,8 @@ public class UserController {
      * Delete the user email details
      * </p>
      *
-     * @param id - user email
-     * @return boolean value
+     * @param id represents the user email
+     * @return the deleted user
      */
     public boolean deleteUser(final Long id) {
         return USER_SERVICE.deleteUser(id);
@@ -57,7 +57,7 @@ public class UserController {
      * Read the user details
      * </p>
      *
-     * @param email - user email
+     * @param email represents the user email
      * @return user
      */
     public User getUser(final String email) {
@@ -69,9 +69,9 @@ public class UserController {
      * Sign in the user details
      * </p>
      *
-     * @param email - user email
-     * @param password - user password
-     * @return boolean value
+     * @param email represents the user email
+     * @param password represents the user password
+     * @return the email and password
      */
     public boolean signIn(final String email, final String password) {
         return USER_SERVICE.signIn(email, password);
@@ -82,7 +82,7 @@ public class UserController {
      * Get the user id
      * </p>
      *
-     * @param id - user id
+     * @param id represents the user id
      * @return User
      */
     public User get(final Long id) {

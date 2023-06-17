@@ -1,13 +1,15 @@
 package com.amazon.service;
 
+import com.amazon.exception.IdNotFoundException;
+import com.amazon.exception.EmailAlreadyExistsException;
 import com.amazon.model.User;
 
-import java.util.Set;
+import java.util.Collection;
 import java.util.HashSet;
 
 /**
  * <p>
- * Add and implementation for user details
+ * To implement the user service interface
  * </p>
  *
  * @author Sanjai S
@@ -15,18 +17,20 @@ import java.util.HashSet;
  */
 public class UserServiceImpl implements UserService {
 
-    private static final Set<User> USERS = new HashSet<>();
+    private static final Collection<User> USERS = new HashSet<>();
     private static int id = 1;
 
     /**
      * {@inheritDoc}
+     * @param user represents the new user
+     * @return user
      */
     @Override
     public boolean createUser(final User user) {
         final User existingUser = getUser(user.getEmail());
 
         if (existingUser != null) {
-            return false;
+            throw new EmailAlreadyExistsException("Email Already exists");
         } else {
             user.setId((long) id++);
             USERS.add(user);
@@ -37,6 +41,9 @@ public class UserServiceImpl implements UserService {
 
     /**
      * {@inheritDoc}
+     * @param email represents the user email
+     * @param password represents the user password
+     * @return the email and password
      */
     @Override
     public boolean signIn(final String email, final String password) {
@@ -47,35 +54,32 @@ public class UserServiceImpl implements UserService {
 
     /**
      * {@inheritDoc}
+     * @param id represents the user id
+     * @return User
      */
     @Override
     public User get(final Long id) {
-        final User user = new User();
+        for (final User user : USERS) {
 
-        for (final User existingUser : USERS) {
-
-            if (existingUser.getId().equals(id)) {
-                user.setEmail(existingUser.getEmail());
-                user.setName(existingUser.getName());
-                user.setMobileNumber(existingUser.getMobileNumber());
-                user.setPassword(existingUser.getPassword());
-
+            if (user.getId().equals(id)) {
                 return user;
             }
         }
 
-        return null;
+        throw new IdNotFoundException("User id not found");
     }
 
     /**
      * {@inheritDoc}
+     * @param user represents the user details
+     * @return the updated user
      */
     @Override
     public boolean updateUser(final User user) {
         final User existingUser = get(user.getId());
 
         if (existingUser == null) {
-            return false;
+            throw new IdNotFoundException("User Email id  not found");
         } else {
             existingUser.setMobileNumber(user.getMobileNumber());
             existingUser.setName(user.getName());
@@ -87,6 +91,8 @@ public class UserServiceImpl implements UserService {
 
     /**
      * {@inheritDoc}
+     * @param id represents the user email
+     * @return the deleted user
      */
     @Override
     public boolean deleteUser(final Long id) {
@@ -97,18 +103,14 @@ public class UserServiceImpl implements UserService {
 
     /**
      * {@inheritDoc}
+     * @param email represents the user email
+     * @return user
      */
     @Override
     public User getUser(final String email) {
-        final User user = new User();
+        for (final User user : USERS) {
 
-        for (final User existingUser : USERS) {
-
-            if (existingUser.getEmail().equals(email)) {
-                user.setName(existingUser.getName());
-                user.setMobileNumber(existingUser.getMobileNumber());
-                user.setPassword(existingUser.getPassword());
-
+            if (user.getEmail().equals(email)) {
                 return user;
             }
         }

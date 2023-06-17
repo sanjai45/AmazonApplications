@@ -2,8 +2,8 @@ package com.amazon.service;
 
 import com.amazon.model.Product;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * <p>
@@ -15,26 +15,30 @@ import java.util.Set;
  */
 public class ProductServiceImpl implements ProductService {
 
-    private static final Set<Product> PRODUCTS = new HashSet<>();
+    private static final Collection<Product> PRODUCTS = new HashSet<>();
 
     private static int id = 1;
 
     /**
      * {@inheritDoc}
+     * @param product represents the product
+     * @return the product
      */
     @Override
     public boolean createProduct(final Product product) {
-        product.setId(String.valueOf(id++));
+        product.setId((long) id++);
 
         return PRODUCTS.add(product);
     }
 
     /**
      * {@inheritDoc}
+     * @param product represents the product detail
+     * @return the updated product
      */
     @Override
     public boolean updateProduct(final Product product) {
-        final Product existingProduct = readProduct(product.getId());
+        final Product existingProduct = getProduct(product.getId());
 
         if (null == existingProduct) {
             return false;
@@ -49,19 +53,23 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * {@inheritDoc}
+     * @param productId represents the product id
+     * @return the product is deleted or not
      */
     @Override
-    public boolean deleteProduct(final String productId) {
-        final Product product = readProduct(productId);
+    public boolean deleteProduct(final Long productId) {
+        final Product product = getProduct(productId);
 
         return product != null && PRODUCTS.remove(product);
     }
 
     /**
      * {@inheritDoc}
+     * @param productId represents the product id
+     * @return the product id is valid or not
      */
     @Override
-    public Product readProduct(final String productId) {
+    public Product getProduct(final Long productId) {
         for (final Product amazon : PRODUCTS) {
 
             if (amazon.getId().equals(productId)) {
@@ -74,9 +82,10 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * {@inheritDoc}
+     * @return product
      */
     @Override
-    public Set<Product> getAllProducts() {
+    public Collection<Product> getAllProducts() {
         return PRODUCTS;
     }
 }

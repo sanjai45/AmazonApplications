@@ -14,7 +14,7 @@ public class User {
     private String email;
     private String mobileNumber;
     private String password;
-    private Long  id;
+    private Long id;
 
     public void setName(final String name) {
         this.name = name;
@@ -48,11 +48,15 @@ public class User {
         return password;
     }
 
-    public Long  getId() {
+    public Long getId() {
         return id;
     }
 
     public void setId(final Long id) {
         this.id = id;
+    }
+
+    public String toString() {
+        return String.format("Id %s\nName %s\nEmail %s\nMobileNumber %s\nPassword%s", id, name, email, mobileNumber, password);
     }
 }
