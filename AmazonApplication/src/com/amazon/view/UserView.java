@@ -23,7 +23,6 @@ public class UserView {
     private static final UserController USER_CONTROLLER = new UserController();
     private static final UserValidation USER_VALIDATION = new UserValidation();
     private static final ProductView PRODUCT_VIEW = new ProductView();
-
     private static final String CONDITION = "yes";
 
     public static void main(String[] args) {
@@ -210,11 +209,7 @@ public class UserView {
         System.out.println("Delete");
         final Long id = SCANNER.nextLong();
 
-        if (USER_CONTROLLER.deleteUser(id)) {
-            System.out.println("User deleted successfully");
-        } else {
-            System.out.println("User not deleted");
-        }
+        System.out.println((USER_CONTROLLER.deleteUser(id)) ? ("User deleted successfully") : ("User not deleted"));
     }
 
     /**
@@ -241,6 +236,7 @@ public class UserView {
         } else {
             user.setName(existingUser.getEmail());
         }
+
         System.out.println("Do you want to update the password, Please enter yes");
         final String updatePassword = SCANNER.next();
 

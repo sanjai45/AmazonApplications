@@ -70,10 +70,10 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public Product getProduct(final Long productId) {
-        for (final Product amazon : PRODUCTS) {
+        for (final Product product : PRODUCTS) {
 
-            if (amazon.getId().equals(productId)) {
-                return amazon;
+            if (product.getId().equals(productId)) {
+                return product;
             }
         }
 

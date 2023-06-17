@@ -65,9 +65,9 @@ public class ProductView {
      */
     private void getAllProducts() {
         System.out.println("Get the all products");
-        final Collection<Product> amazons = PRODUCT_CONTROLLER.getAllProducts();
+        final Collection<Product> products = PRODUCT_CONTROLLER.getAllProducts();
 
-        System.out.println(amazons);
+        System.out.println(products);
     }
 
     /**
@@ -77,12 +77,12 @@ public class ProductView {
      */
     private void getProduct() {
         System.out.println("Read the one product");
-        final Product amazon = PRODUCT_CONTROLLER.getProduct(getProductId());
+        final Product product = PRODUCT_CONTROLLER.getProduct(getProductId());
 
-        System.out.println(amazon.getId());
-        System.out.println(amazon.getName());
-        System.out.println(amazon.getPrice());
-        System.out.println(amazon.getCategory());
+        System.out.println(product.getId());
+        System.out.println(product.getName());
+        System.out.println(product.getPrice());
+        System.out.println(product.getCategory());
     }
 
     /**
@@ -92,12 +92,7 @@ public class ProductView {
      */
     private void deleteProduct() {
         System.out.println("Delete the product");
-
-        if (PRODUCT_CONTROLLER.deleteProduct(getProductId())) {
-            System.out.println("Product deleted successfully");
-        } else {
-            System.out.println("Product deleted failed");
-        }
+        System.out.println(PRODUCT_CONTROLLER.deleteProduct(getProductId()) ? ("Product deleted successfully") : ("Product deleted failed"));
     }
 
     /**
@@ -106,21 +101,16 @@ public class ProductView {
      * </p>
      */
     private void updateProduct() {
-        final Product amazon = new Product();
+        final Product product = new Product();
 
         System.out.println("Update the products");
         System.out.println("Enter the product Id");
-        amazon.setId(getProductId());
+        product.setId(getProductId());
         System.out.println("Enter the product name");
-        amazon.setName(SCANNER.next());
+        product.setName(SCANNER.next());
         System.out.println("Enter the price");
-        amazon.setPrice(SCANNER.nextDouble());
-
-        if (PRODUCT_CONTROLLER.updateProduct(amazon)) {
-            System.out.println("Product updated");
-        } else {
-            System.out.println("Product updated failed");
-        }
+        product.setPrice(SCANNER.nextDouble());
+        System.out.println((PRODUCT_CONTROLLER.updateProduct(product)) ? ("Product updated") : ("Product updated failed"));
     }
 
     /**
@@ -139,12 +129,7 @@ public class ProductView {
         System.out.println("Enter the price");
         product.setPrice(SCANNER.nextDouble());
         product.setCategory(getCategory());
-
-        if (PRODUCT_CONTROLLER.createProduct(product)) {
-            System.out.println("Product created successfully");
-        } else {
-            System.out.println("product created failed");
-        }
+        System.out.println((PRODUCT_CONTROLLER.createProduct(product)) ? ("Product created successfully") : ("product created failed"));
     }
 
     /**
