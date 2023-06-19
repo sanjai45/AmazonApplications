@@ -1,10 +1,12 @@
 package com.amazon.view;
 
 import com.amazon.controller.ProductController;
+import com.amazon.model.Category;
 import com.amazon.model.Product;
 import com.amazon.view.validation.ProductValidation;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -32,30 +34,30 @@ public class ProductView {
 
         switch (input) {
             case 1: {
-                addProduct();
+                this.addProduct();
                 break;
             }
             case 2: {
-                updateProduct();
+                this.updateProduct();
                 break;
             }
             case 3: {
-                deleteProduct();
+                this.deleteProduct();
                 break;
             }
             case 4: {
-                getProduct();
+                this.getProduct();
                 break;
             }
             case 5: {
-                getAllProducts();
+                this.getAllProducts();
                 break;
             }
             case 6: {
                 System.exit(0);
             }
         }
-        productDetails();
+        this.productDetails();
     }
 
     /**
@@ -67,7 +69,9 @@ public class ProductView {
         System.out.println("Get the all products");
         final Collection<Product> products = PRODUCT_CONTROLLER.getAllProducts();
 
-        System.out.println(products);
+        for (Product product : products) {
+            System.out.println(product);
+        }
     }
 
     /**
@@ -128,7 +132,7 @@ public class ProductView {
         product.setName(SCANNER.next());
         System.out.println("Enter the price");
         product.setPrice(SCANNER.nextDouble());
-        product.setCategory(getCategory());
+        product.setCategory(getCategories());
         System.out.println((PRODUCT_CONTROLLER.createProduct(product)) ? ("Product created successfully") : ("product created failed"));
     }
 
@@ -147,18 +151,27 @@ public class ProductView {
 
     /**
      * <p>
-     * Get the category of products
+     * Gets the category of products
      * </p>
-     * <p>
-     * return category Id
+     *
+     * return The category Id
      */
-    private Integer getCategory() {
+    public int getCategories() {
         System.out.println("Enter the product category 1.Electronics, 2.Vehicle, 3.Fashion, 4.APPLIANCES, 5.Sports, 6.Toys");
         final int categoryId = SCANNER.nextInt();
 
-        if (!PRODUCT_VALIDATION.checkCategory(categoryId)) {
-            return null;
+        if (PRODUCT_VALIDATION.checkCategory(categoryId)) {
+            return categoryId;
         }
-        return getCategory();
+        return getCategories();
+    }
+
+    public void showAllCategories() {
+        final List<Category> lists = List.of(Category.VEHICLE, Category.TOYS, Category.FASHION, Category.APPLIANCES,
+                Category.SPORTS, Category.ELECTRONICS);
+
+        for (final Category list : lists) {
+            System.out.println(list);
+        }
     }
 }

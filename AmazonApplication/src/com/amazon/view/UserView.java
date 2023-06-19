@@ -36,7 +36,7 @@ public class UserView {
      * </p>
      */
     private void userType() {
-        System.out.println("Please Enter 1. Admin user, 2. User and 3. exit");
+        System.out.println("Please Enter 1. Admin user and 2. User");
         final int choice = SCANNER.nextInt();
 
         switch (choice) {
@@ -48,14 +48,10 @@ public class UserView {
                 this.userDetails();
                 break;
             }
-            case 3: {
-                System.exit(0);
-            }
             default: {
                 System.out.println("Please enter the number between [1 - 3]");
             }
         }
-        USER_VIEW.userType();
     }
 
     /**
@@ -64,12 +60,13 @@ public class UserView {
      * </p>
      */
     private void adminUser() {
-        System.out.println("Please Enter 1. signUp, 2. signIn, 3. userDetailsChange, 4. product details and 4. exit");
+        System.out.println("Please Enter 1. signUp, 2. signIn, 3. userDetailsChange, 4. product details, 5. home screen and 5. exit");
         final int choice = SCANNER.nextInt();
+        final User user = new User();
 
         switch (choice) {
             case 1: {
-                this.signUp();
+                this.signUp(user);
                 break;
             }
             case 2: {
@@ -85,10 +82,14 @@ public class UserView {
                 break;
             }
             case 5: {
+                this.homeScreen(user.getId());
+                break;
+            }
+            case 6: {
                 System.exit(0);
             }
             default: {
-                System.out.println("Please enter the number between [1 - 5]");
+                System.out.println("Please enter the number between [1 - 6]");
             }
         }
         USER_VIEW.adminUser();
@@ -102,14 +103,16 @@ public class UserView {
     private void userDetails() {
         System.out.println("Please Enter 1. signUp, 2. signIn and 3. userDetailChange 4. exit");
         final int choice = SCANNER.nextInt();
+        final User user = new User();
 
         switch (choice) {
             case 1: {
-                this.signUp();
+                this.signUp(user);
                 break;
             }
             case 2: {
                 this.signIn();
+                this.homeScreen(user.getId());
                 break;
             }
             case 3: {
@@ -124,6 +127,60 @@ public class UserView {
             }
         }
         USER_VIEW.userDetails();
+    }
+
+    /**
+     * <p>
+     * Choose category, profile or settings for user
+     * </p>
+     */
+    private void homeScreen(final Long userId) {
+        System.out.println("Please Enter 1. Category, 2. profile and 3. settings 4. exit");
+        final int choice = SCANNER.nextInt();
+
+        switch (choice) {
+            case 1: {
+                PRODUCT_VIEW.showAllCategories();
+                break;
+            }
+            case 2: {
+                this.profile(userId);
+                break;
+            }
+            case 3: {
+                this.settings();
+                break;
+            }
+            case 4: {
+                System.exit(0);
+            }
+            default: {
+                System.out.println("Please enter the number between [1 - 4]");
+            }
+        }
+        USER_VIEW.homeScreen(userId);
+    }
+
+    /**
+     * <p>
+     * Represents the profile for user details
+     * </p>
+     *
+     * @param userId represents the user id
+     */
+    private void profile(final Long userId) {
+        final User user = USER_CONTROLLER.get(userId);
+
+        System.out.println(user);
+    }
+
+    /**
+     * <p>
+     * Represents the setting for user details change
+     * </p>
+     */
+    private void settings() {
+        this.userDetailChange();
     }
 
     /**
@@ -177,7 +234,7 @@ public class UserView {
                 USER_VIEW.signIn();
             }
         } catch (NullPointerException exception) {
-            System.out.println(exception);
+            System.out.println(exception.getMessage());
         }
     }
 
@@ -207,9 +264,10 @@ public class UserView {
      */
     private void deleteUser() {
         System.out.println("Delete");
+        System.out.println("Enter the user id");
         final Long id = SCANNER.nextLong();
 
-        System.out.println((USER_CONTROLLER.deleteUser(id)) ? ("User deleted successfully") : ("User not deleted"));
+        System.out.println((USER_CONTROLLER.deleteUser(id)) ? "User deleted successfully" : "User not deleted");
     }
 
     /**
@@ -267,10 +325,9 @@ public class UserView {
      * Represents the signUp action
      * </p>
      */
-    private void signUp() {
+    private void signUp(final User user) {
         try{
             System.out.println("SignUp");
-            final User user = new User();
 
             user.setEmail(getEmail());
             user.setName(getName());
