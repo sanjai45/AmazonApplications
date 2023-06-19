@@ -133,6 +133,8 @@ public class UserView {
      * <p>
      * Choose category, profile or settings for user
      * </p>
+     *
+     * @param userId represents for user id
      */
     private void homeScreen(final Long userId) {
         System.out.println("Please Enter 1. Category, 2. profile and 3. settings 4. exit");
