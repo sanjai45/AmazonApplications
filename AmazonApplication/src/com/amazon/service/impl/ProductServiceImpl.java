@@ -1,6 +1,7 @@
-package com.amazon.service;
+package com.amazon.service.impl;
 
 import com.amazon.model.Product;
+import com.amazon.service.ProductService;
 
 import java.util.Collection;
 import java.util.HashSet;

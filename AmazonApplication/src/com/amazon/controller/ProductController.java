@@ -2,7 +2,7 @@ package com.amazon.controller;
 
 import com.amazon.model.Product;
 import com.amazon.service.ProductService;
-import com.amazon.service.ProductServiceImpl;
+import com.amazon.service.impl.ProductServiceImpl;
 
 import java.util.Collection;
 

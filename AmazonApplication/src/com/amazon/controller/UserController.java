@@ -2,7 +2,7 @@ package com.amazon.controller;
 
 import com.amazon.model.User;
 import com.amazon.service.UserService;
-import com.amazon.service.UserServiceImpl;
+import com.amazon.service.impl.UserServiceImpl;
 
 /**
  * <p>
@@ -87,5 +87,9 @@ public class UserController {
      */
     public User get(final Long id) {
         return USER_SERVICE.get(id);
+    }
+
+    public boolean signUp(final User user){
+        return USER_SERVICE.signUp(user);
     }
 }

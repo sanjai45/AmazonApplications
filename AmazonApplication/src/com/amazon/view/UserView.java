@@ -60,7 +60,7 @@ public class UserView {
      * </p>
      */
     private void adminUser() {
-        System.out.println("Please Enter 1. signUp, 2. signIn, 3. userDetailsChange, 4. product details, 5. home screen and 5. exit");
+        System.out.println("Please Enter 1. signUp, 2. signIn, 3. userDetailsChange, 4. product details, 5. home screen and 6. exit");
         final int choice = SCANNER.nextInt();
         final User user = new User();
 

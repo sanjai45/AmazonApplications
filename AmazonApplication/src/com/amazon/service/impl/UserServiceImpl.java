@@ -1,8 +1,9 @@
-package com.amazon.service;
+package com.amazon.service.impl;
 
 import com.amazon.exception.IdNotFoundException;
 import com.amazon.exception.EmailAlreadyExistsException;
 import com.amazon.model.User;
+import com.amazon.service.UserService;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -67,6 +68,11 @@ public class UserServiceImpl implements UserService {
         }
 
         throw new IdNotFoundException("User id not found");
+    }
+
+    @Override
+    public boolean signUp(final User user) {
+        return false;
     }
 
     /**
