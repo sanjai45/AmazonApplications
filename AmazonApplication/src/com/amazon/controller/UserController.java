@@ -88,8 +88,4 @@ public class UserController {
     public User get(final Long id) {
         return USER_SERVICE.get(id);
     }
-
-    public boolean signUp(final User user){
-        return USER_SERVICE.signUp(user);
-    }
 }
