@@ -70,11 +70,6 @@ public class UserServiceImpl implements UserService {
         throw new IdNotFoundException("User id not found");
     }
 
-    @Override
-    public boolean signUp(final User user) {
-        return false;
-    }
-
     /**
      * {@inheritDoc}
      * @param user represents the user details

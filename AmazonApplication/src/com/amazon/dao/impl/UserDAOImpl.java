@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO {
         return USERSERVICEDAOIMPL;
     }
 
-    public boolean createUser(final User user) {
+    public boolean signUp(final User user) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/users", "postgres", "sanjai");
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO USERS VALUES (?,?,?,?,?)");
