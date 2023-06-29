@@ -29,7 +29,7 @@ public class ProductView {
      * </p>
      */
     public void productDetails() {
-        System.out.println("Choose 1 to create the product, 2 to update, 3 to delete, 4 to read, 5 to get all products, 6 to exit");
+        System.out.println("Choose 1 to create the product, 2 to update the product, 3 to delete the product, 4 to get one product, 5 to get all products, 6 to exit");
         final int input = SCANNER.nextInt();
 
         switch (input) {
@@ -108,7 +108,6 @@ public class ProductView {
         final Product product = new Product();
 
         System.out.println("Update the products");
-        System.out.println("Enter the product Id");
         product.setId(getProductId());
         System.out.println("Enter the product name");
         product.setName(SCANNER.next());
@@ -141,7 +140,7 @@ public class ProductView {
      * Gets the product Id
      * </p>
      * <p>
-     * return product Id
+     * return {@link Long} product Id
      */
     private Long getProductId() {
         System.out.println("Enter the product id");

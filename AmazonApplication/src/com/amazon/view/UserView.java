@@ -226,6 +226,7 @@ public class UserView {
     private void signIn() {
         try {
             System.out.println("SignIn");
+            //final Long id = USER_VIEW.getId();
             final String email = USER_VIEW.getEmail();
             final String password = USER_VIEW.getPassword();
 
@@ -283,10 +284,10 @@ public class UserView {
 
         System.out.println("Enter the user id");
         user.setId(SCANNER.nextLong());
-        final String email = getEmail();
+        final Long id = getId();
 
-        user.setEmail(email);
-        final User existingUser = USER_CONTROLLER.getUser(email);
+        user.setId(id);
+        final User existingUser = USER_CONTROLLER.getUser(id);
 
         System.out.println("Do you want to update the name, Please enter yes");
         final String updateName = SCANNER.next();
@@ -330,7 +331,7 @@ public class UserView {
     private void signUp(final User user) {
         try{
             System.out.println("SignUp");
-
+            user.setId(getId());
             user.setEmail(getEmail());
             user.setName(getName());
             user.setPassword(getPassword());
@@ -417,5 +418,18 @@ public class UserView {
             System.out.println("Please Enter the valid Passwords");
             return getPassword();
         }
+    }
+
+    /**
+     * <p>
+     * Gets the user id
+     * </p>
+     *
+     * @return {@link Long} id
+     */
+    private long getId() {
+        System.out.println("Enter the Id");
+        final Long id = SCANNER.nextLong();
+        return id;
     }
 }

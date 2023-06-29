@@ -2,7 +2,7 @@ package com.amazon.controller;
 
 import com.amazon.model.Product;
 import com.amazon.service.ProductService;
-import com.amazon.service.impl.ProductServiceImpl;
+import com.amazon.dao.impl.ProductDAOImpl;
 
 import java.util.Collection;
 
@@ -17,7 +17,7 @@ import java.util.Collection;
  */
 public class ProductController {
 
-    private static final ProductService PRODUCT_SERVICE = new ProductServiceImpl();
+    private static final ProductService PRODUCT_SERVICE = new ProductDAOImpl();
 
     /**
      * <p>

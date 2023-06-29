@@ -2,7 +2,7 @@ package com.amazon.controller;
 
 import com.amazon.model.User;
 import com.amazon.service.UserService;
-import com.amazon.service.impl.UserServiceImpl;
+import com.amazon.dao.impl.UserDAOImpl;
 
 /**
  * <p>
@@ -14,7 +14,7 @@ import com.amazon.service.impl.UserServiceImpl;
  */
 public class UserController {
 
-    private static final UserService USER_SERVICE = new UserServiceImpl();
+    private static final UserService USER_SERVICE = new UserDAOImpl();
 
     /**
      * <p>
@@ -57,11 +57,11 @@ public class UserController {
      * Read the user details
      * </p>
      *
-     * @param email represents the user email
+     * @param id represents the user id
      * @return user
      */
-    public User getUser(final String email) {
-        return USER_SERVICE.getUser(email);
+    public User getUser(final Long id) {
+        return USER_SERVICE.getUser(id);
     }
 
     /**
@@ -69,7 +69,7 @@ public class UserController {
      * Sign in the user details
      * </p>
      *
-     * @param email represents the user email
+     * @param email    represents the user email
      * @param password represents the user password
      * @return the email and password
      */

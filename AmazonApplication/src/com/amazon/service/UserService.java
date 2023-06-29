@@ -47,17 +47,17 @@ public interface UserService {
      * Gets the user details
      * </p>
      *
-     * @param email represents the user email
+     * @param id represents the user id
      * @return user
      */
-    User getUser(final String email);
+    User getUser(final Long id);
 
     /**
      * <p>
      * Represents the sign in action
      * </p>
      *
-     * @param email represents the user email
+     * @param email    represents the user email
      * @param password represents the user password
      * @return the email and password
      */

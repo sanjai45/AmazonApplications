@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean createUser(final User user) {
-        final User existingUser = getUser(user.getEmail());
+        final User existingUser = getUser((user.getId()));
 
         if (existingUser != null) {
             throw new EmailAlreadyExistsException("Email Already exists");
@@ -42,19 +42,21 @@ public class UserServiceImpl implements UserService {
 
     /**
      * {@inheritDoc}
-     * @param email represents the user email
+     *
+     * @param email    represents the user email
      * @param password represents the user password
      * @return the email and password
      */
     @Override
     public boolean signIn(final String email, final String password) {
-        final User user = getUser(email);
+        final User user = getUser((long) id);
 
         return user != null && user.getPassword().equals(password);
     }
 
     /**
      * {@inheritDoc}
+     *
      * @param id represents the user id
      * @return User
      */
@@ -104,14 +106,15 @@ public class UserServiceImpl implements UserService {
 
     /**
      * {@inheritDoc}
-     * @param email represents the user email
+     *
+     * @param id represents the user email
      * @return user
      */
     @Override
-    public User getUser(final String email) {
+    public User getUser(final Long id) {
         for (final User user : USERS) {
 
-            if (user.getEmail().equals(email)) {
+            if (user.getId().equals(id)) {
                 return user;
             }
         }
