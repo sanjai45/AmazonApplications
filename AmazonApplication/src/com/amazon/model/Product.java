@@ -10,7 +10,7 @@ package com.amazon.model;
  */
 public class Product {
 
-    private Long id;
+    private long id;
     private String name;
     private Double price;
     private int category;
@@ -18,11 +18,11 @@ public class Product {
     public Product() {
     }
 
-    public Long getId() {
+    public long getId() {
         return this.id;
     }
 
-    public void setId(final Long id) {
+    public void setId(final long id) {
         this.id = id;
     }
 

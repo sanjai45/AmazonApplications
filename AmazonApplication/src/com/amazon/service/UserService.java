@@ -71,5 +71,5 @@ public interface UserService {
      * @param id represents the user id
      * @return User
      */
-    User get(final Long id);
+    Long get(final Long id);
 }

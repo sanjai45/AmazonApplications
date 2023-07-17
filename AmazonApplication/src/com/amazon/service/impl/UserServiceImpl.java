@@ -61,11 +61,11 @@ public class UserServiceImpl implements UserService {
      * @return User
      */
     @Override
-    public User get(final Long id) {
+    public Long get(final Long id) {
         for (final User user : USERS) {
 
             if (user.getId().equals(id)) {
-                return user;
+                return user.getId();
             }
         }
 
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean updateUser(final User user) {
-        final User existingUser = get(user.getId());
+        final User existingUser = getUser(user.getId());
 
         if (existingUser == null) {
             throw new IdNotFoundException("User Email id  not found");
@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean deleteUser(final Long id) {
-        final User user = get(id);
+        final Long user = get(id);
 
         return user != null && USERS.remove(user);
     }

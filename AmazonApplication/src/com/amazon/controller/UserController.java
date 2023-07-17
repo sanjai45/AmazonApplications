@@ -85,7 +85,7 @@ public class UserController {
      * @param id represents the user id
      * @return User
      */
-    public User get(final Long id) {
+    public Long get(final Long id) {
         return USER_SERVICE.get(id);
     }
 }

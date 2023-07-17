@@ -63,7 +63,7 @@ public class ProductController {
      * @param productId represents the amazon product ID
      * @return Product
      */
-    public Product getProduct(final Long productId) {
+    public Product getProduct(final long productId) {
         return PRODUCT_SERVICE.getProduct(productId);
     }
 

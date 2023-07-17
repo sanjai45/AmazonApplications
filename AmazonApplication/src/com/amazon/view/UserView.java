@@ -171,7 +171,7 @@ public class UserView {
      * @param userId represents the user id
      */
     private void profile(final Long userId) {
-        final User user = USER_CONTROLLER.get(userId);
+        final Long user = USER_CONTROLLER.get(userId);
 
         System.out.println(user);
     }
@@ -250,7 +250,7 @@ public class UserView {
         try {
             System.out.println("Please Enter the user id");
             final Long id = SCANNER.nextLong();
-            final User user = USER_CONTROLLER.get(id);
+            final User user = USER_CONTROLLER.getUser(id);
 
             System.out.println("Your details");
             System.out.println(user);
@@ -281,9 +281,6 @@ public class UserView {
     private void updateUser() {
         System.out.println("update");
         final User user = new User();
-
-        System.out.println("Enter the user id");
-        user.setId(SCANNER.nextLong());
         final Long id = getId();
 
         user.setId(id);
@@ -295,7 +292,7 @@ public class UserView {
         if (CONDITION.equalsIgnoreCase(updateName)) {
             user.setName(getName());
         } else {
-            user.setName(existingUser.getEmail());
+            user.setName(existingUser.getName());
         }
 
         System.out.println("Do you want to update the password, Please enter yes");
@@ -317,9 +314,6 @@ public class UserView {
 
         if (USER_CONTROLLER.updateUser(user)) {
             System.out.println("Updated successfully " + user);
-        } else {
-            System.out.println("Email not found, please enter correct email id");
-            updateUser();
         }
     }
 

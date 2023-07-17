@@ -6,6 +6,7 @@ import com.amazon.model.Product;
 import com.amazon.view.validation.ProductValidation;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
