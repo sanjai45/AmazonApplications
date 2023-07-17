@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public boolean createProduct(final Product product) {
-        product.setId(id++);
+        product.setId((long) id++);
 
         return PRODUCTS.add(product);
     }
@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
      * @return the product id is valid or not
      */
     @Override
-    public Product getProduct(final long productId) {
+    public Product getProduct(final Long productId) {
         for (final Product product : PRODUCTS) {
 
             /*if (product.getId().equals(productId)) {
@@ -83,7 +83,6 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * {@inheritDoc}
-     *
      * @return product
      */
     @Override

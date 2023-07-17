@@ -4,17 +4,28 @@ import com.amazon.model.Product;
 import com.amazon.service.ProductService;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 
+/**
+ * <p>
+ * Add and implementation for product details
+ * </p>
+ *
+ * @author Sanjai S
+ * @version 1.0
+ */
 public class ProductDAOImpl implements ProductService {
 
+    /**
+     * {@inheritDoc}
+     * @param product represents the product
+     * @return the product
+     */
     @Override
     public boolean createProduct(final Product product) {
-        try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/products", "postgres", "sanjai");
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO product VALUES (?,?,?,?)");
+        try (final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Products", "postgres", "Arun@2002");
+             final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO product VALUES (?,?,?,?)")) {
 
             preparedStatement.setLong(1, product.getId());
             preparedStatement.setString(2, product.getName());
@@ -25,18 +36,19 @@ public class ProductDAOImpl implements ProductService {
             return true;
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-        } catch (ClassNotFoundException classNotFoundException) {
-            throw new RuntimeException(classNotFoundException);
         }
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param product represents the product detail
+     * @return the updated product
+     */
     @Override
     public boolean updateProduct(final Product product) {
-        try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/products", "postgres", "sanjai");
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE product SET name = ?, price = ?, category = ? WHERE id = ?");
+        try (final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Products", "postgres", "Arun@2002");
+             final PreparedStatement preparedStatement = connection.prepareStatement("UPDATE product SET name = ?, price = ?, category = ? WHERE id = ?")) {
 
             preparedStatement.setString(1, product.getName());
             preparedStatement.setDouble(2, product.getPrice());
@@ -47,41 +59,31 @@ public class ProductDAOImpl implements ProductService {
             return true;
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-        } catch (ClassNotFoundException classNotFoundException) {
-            throw new RuntimeException(classNotFoundException);
         }
         return false;
     }
 
     @Override
     public boolean deleteProduct(final Long productId) {
-        try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/products", "postgres", "sanjai");
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM product WHERE id = ?");
+        try (final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Products", "postgres", "Arun@2002");
+             final PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM product WHERE id = ?")) {
 
             preparedStatement.setLong(1, productId);
-            int rowDeleted = preparedStatement.executeUpdate();
+            final int rowDeleted = preparedStatement.executeUpdate();
 
             if (0 < rowDeleted) {
                 return true;
             }
-            connection.close();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-        } catch (ClassNotFoundException classNotFoundException) {
-            throw new RuntimeException(classNotFoundException);
         }
-
         return false;
     }
 
     @Override
-    public Product getProduct(final long productId) {
-        try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/products", "postgres", "sanjai");
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM product WHERE id = ?");
+    public Product getProduct(final Long productId) {
+        try (final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Products", "postgres", "Arun@2002");
+             final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM product WHERE id = ?")) {
 
             preparedStatement.setLong(1, productId);
             final ResultSet resultSet = preparedStatement.executeQuery();
@@ -98,20 +100,17 @@ public class ProductDAOImpl implements ProductService {
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-        } catch (ClassNotFoundException classNotFoundException) {
-            throw new RuntimeException(classNotFoundException);
         }
         return null;
     }
 
     @Override
     public Collection<Product> getAllProducts() {
-        final Collection<Product> products = new HashSet<>();
-        try {
-            Class.forName("org.postgresql.Driver");
-            final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/products", "postgres", "sanjai");
+        final Collection<Product> products = new ArrayList<>();
+
+        try (final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Products", "postgres", "Arun@2002");
             final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM product");
-            final ResultSet resultSet = preparedStatement.executeQuery();
+            final ResultSet resultSet = preparedStatement.executeQuery()) {
 
             if (resultSet.next()) {
                 final Product product = new Product();
@@ -124,11 +123,8 @@ public class ProductDAOImpl implements ProductService {
 
                 return products;
             }
-            connection.close();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-        } catch (ClassNotFoundException classNotFoundException) {
-            throw new RuntimeException(classNotFoundException);
         }
         return null;
     }

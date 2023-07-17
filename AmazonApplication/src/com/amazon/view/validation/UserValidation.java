@@ -19,7 +19,7 @@ public class UserValidation {
      * @return the email is valid or not
      */
     public boolean checkEmail(final String email) {
-        return email.matches("[A-Za-z0-9]+@[a-z]+\\.[a-z]{2,4}");
+        return email.matches("[A-Za-z\\d]+@[a-z]+\\.[a-z]{2,4}");
     }
 
     /**
@@ -43,7 +43,7 @@ public class UserValidation {
      * @return the mobile number is valid or not
      */
     public boolean checkMobileNumber(final String mobileNumber) {
-        return mobileNumber.matches("(0/91)?[7-9][0-9]{9}");
+        return mobileNumber.matches("(0/91)?[7-9]\\d{9}");
     }
 
     /**
@@ -55,6 +55,6 @@ public class UserValidation {
      * @return the password is valid or not
      */
     public boolean checkPassword(final String password) {
-        return password.matches("^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$");
+        return password.matches("^.*(?=.{8,})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$");
     }
 }

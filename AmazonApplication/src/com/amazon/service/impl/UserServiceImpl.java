@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean signIn(final String email, final String password) {
-        final User user = getUser((long) id);
+        final User user = getUser((long) UserServiceImpl.id);
 
         return user != null && user.getPassword().equals(password);
     }

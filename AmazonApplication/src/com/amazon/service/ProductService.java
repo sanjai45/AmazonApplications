@@ -52,7 +52,7 @@ public interface ProductService {
      * @param productId represents the product id
      * @return the product id is valid or not
      */
-    Product getProduct(final long productId);
+    Product getProduct(final Long productId);
 
     /**
      * <p>

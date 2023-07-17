@@ -62,11 +62,10 @@ public class UserView {
     private void adminUser() {
         System.out.println("Please Enter 1. signUp, 2. signIn, 3. userDetailsChange, 4. product details, 5. home screen and 6. exit");
         final int choice = SCANNER.nextInt();
-        final User user = new User();
 
         switch (choice) {
             case 1: {
-                this.signUp(user);
+                this.signUp();
                 break;
             }
             case 2: {
@@ -82,7 +81,7 @@ public class UserView {
                 break;
             }
             case 5: {
-                this.homeScreen(user.getId());
+                this.homeScreen();
                 break;
             }
             case 6: {
@@ -103,16 +102,15 @@ public class UserView {
     private void userDetails() {
         System.out.println("Please Enter 1. signUp, 2. signIn and 3. userDetailChange 4. exit");
         final int choice = SCANNER.nextInt();
-        final User user = new User();
 
         switch (choice) {
             case 1: {
-                this.signUp(user);
+                this.signUp();
                 break;
             }
             case 2: {
                 this.signIn();
-                this.homeScreen(user.getId());
+                this.homeScreen();
                 break;
             }
             case 3: {
@@ -133,10 +131,8 @@ public class UserView {
      * <p>
      * Choose category, profile or settings for user
      * </p>
-     *
-     * @param userId represents for user id
      */
-    private void homeScreen(final Long userId) {
+    private void homeScreen() {
         System.out.println("Please Enter 1. Category, 2. profile and 3. settings 4. exit");
         final int choice = SCANNER.nextInt();
 
@@ -146,7 +142,7 @@ public class UserView {
                 break;
             }
             case 2: {
-                this.profile(userId);
+                this.profile();
                 break;
             }
             case 3: {
@@ -160,18 +156,17 @@ public class UserView {
                 System.out.println("Please enter the number between [1 - 4]");
             }
         }
-        USER_VIEW.homeScreen(userId);
+        USER_VIEW.homeScreen();
     }
 
     /**
      * <p>
      * Represents the profile for user details
      * </p>
-     *
-     * @param userId represents the user id
      */
-    private void profile(final Long userId) {
-        final Long user = USER_CONTROLLER.get(userId);
+    private void profile() {
+        final Long userId = this.getId();
+        final User user = USER_CONTROLLER.getUser(userId);
 
         System.out.println(user);
     }
@@ -226,7 +221,6 @@ public class UserView {
     private void signIn() {
         try {
             System.out.println("SignIn");
-            //final Long id = USER_VIEW.getId();
             final String email = USER_VIEW.getEmail();
             final String password = USER_VIEW.getPassword();
 
@@ -322,7 +316,9 @@ public class UserView {
      * Represents the signUp action
      * </p>
      */
-    private void signUp(final User user) {
+    private void signUp() {
+        final User user = new User();
+
         try{
             System.out.println("SignUp");
             user.setId(getId());
@@ -421,9 +417,8 @@ public class UserView {
      *
      * @return {@link Long} id
      */
-    private long getId() {
-        System.out.println("Enter the Id");
-        final Long id = SCANNER.nextLong();
-        return id;
+    private Long getId() {
+        System.out.println("Enter the user Id");
+        return SCANNER.nextLong();
     }
 }
